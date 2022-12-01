@@ -1,12 +1,11 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Job = ({ data }) => {
   const dispatch = useDispatch();
-  const array = useSelector((state) => state.favorite);
-  console.log("array-->", array);
+  const array = useSelector((state) => state.favorite.content);
 
   return (
     <Row
@@ -22,7 +21,7 @@ const Job = ({ data }) => {
         </a>
       </Col>
       <Col xs={1}>
-        <Button
+        <Button className="mb-1"
           onClick={() => {
             dispatch({
               type: "ADD_TO_FAVORITE",
@@ -30,8 +29,17 @@ const Job = ({ data }) => {
             });
           }}
         >
+          <FaHeart />
+          </Button>
+          <Button
+          onClick={() => {
+            dispatch({
+              type: "REMOVE_FROM_FAVORITE",
+              payload: data._id
+            });
+          }}
+        >
           <FaRegHeart />
-          {/* <FaHeart /> */}
         </Button>
       </Col>
     </Row>
