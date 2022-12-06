@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Navbar, Nav } from "react-bootstrap";
 import Job from "./Job";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ const MainSearch = () => {
   const redux = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
   const jobs = redux.jobs;
-  
+
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
@@ -22,11 +22,20 @@ const MainSearch = () => {
   };
 
   return (
-    <Container>
+    <>
+       <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="#home">Remote Jobs Search</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href='/favourites'>Favourites</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+      </Navbar>
+    <Container>   
       <Row>
         <Col xs={10} className="mx-auto my-3">
-          <h1>Remote Jobs Search</h1>
-          <Link to={`/favourites`}>Favourites</Link>
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
@@ -44,7 +53,8 @@ const MainSearch = () => {
           ))}
         </Col>
       </Row>
-    </Container>
+      </Container>
+    </>
   );
 };
 
