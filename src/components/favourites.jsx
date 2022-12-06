@@ -3,7 +3,8 @@ import { Container, Row, Col, Nav, Navbar } from "react-bootstrap";
 import Job from "./Job";
 
 const Favourites = () => {
-  const array = useSelector((state) => state.favorite.favorite.content);
+  const array = useSelector((state) => state.favorite.content);
+  console.log('state.favorite-->', array);
   return (
     <>
       <Navbar bg="light" expand="lg">

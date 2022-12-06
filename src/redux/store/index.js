@@ -12,11 +12,11 @@ import jobsReducer from "../reducer/jobsReducer";
 const persistConfig = {
   key: "root",
   storage: localStorage,
-  // transforms: [
-  //   encryptTransform({
-  //     secretKey: process.env.REACT_APP_SECRET_KEY
-  //   })
-  // ]
+  transforms: [
+    encryptTransform({
+      secretKey: process.env.REACT_APP_SECRET_KEY
+    })
+  ]
 };
 
 const bigReducer = combineReducers({
@@ -29,7 +29,7 @@ const persistreducer = persistReducer(persistConfig, bigReducer);
 export const store = configureStore({
   reducer: persistreducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  getDefaultMiddleware({
       serializableCheck: false
     })
 });
