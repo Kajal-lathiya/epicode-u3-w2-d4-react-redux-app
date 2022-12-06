@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Job from "./Job";
 
 const Favourites = () => {
-  const array = useSelector((state) => state.favorite.content);
+  const array = useSelector((state) => state.favorite.favorite.content);
   return (
       <Container>
         <h1>Favorite Jobs</h1>
